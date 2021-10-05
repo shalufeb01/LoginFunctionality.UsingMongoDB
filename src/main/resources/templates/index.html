@@ -126,11 +126,14 @@ p {
   <h3>Sign Up Here</h3>
   <form action="#" th:action="@{/get_ragister}" th:object="${user}" method="post">
     <div class="inputBox"> <input type="text" name="name" placeholder="Name" id="name" required> </div>
-    <div class="inputBox"> <input type="text" name="email" placeholder="Username" id="email"> </div>
+    <div class="inputBox"> <input type="text" name="email" placeholder="Email" id="email"> </div>
     <div class="inputBox"> <input type="password" name="Password" placeholder="Password" id="password" minlength="8" required> </div>
-    <div class="inputBox"> <input type="password" name="Re-password" placeholder="Re-password" id="re_password" minlength="8" required> </div>
+    <div class="inputBox"> <input type="password" name="re_password" placeholder="Re_password" id="re_password" minlength="8" required> </div>
     <input type="submit" name="Signup" value="Sign-up">
-  </form> <a href="#">Sign-in</a>
+    <div id="register-link" class="text-right">
+      <a href="save.html">Sign In</a>
+    </div>
+  </form>
 </div>
 
 </body>

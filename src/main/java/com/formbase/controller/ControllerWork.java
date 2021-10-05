@@ -36,13 +36,13 @@ private Service service;
 
     }*/
 
-    //@RequestMapping(value = "/get_ragister",method = RequestMethod.GET)
-    /*@GetMapping("/get_ragister")
+    @RequestMapping(value = "/get_login",method = RequestMethod.POST)
+
     public String login(@ModelAttribute User user){
         System.out.println(user);
         service.getLogin(user);
-        return "form";
-    }*/
+        return "You are successfully Logged In";
+    }
 
 
 }
