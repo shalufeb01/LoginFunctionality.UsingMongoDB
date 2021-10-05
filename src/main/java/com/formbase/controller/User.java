@@ -1,39 +1,38 @@
-package Html.Form.LoginFunctionality.UsingMongoDB;
+package com.formbase.controller;
 
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.stereotype.Component;
 
 @Setter
 @Getter
-@Component
-@Document(collection = "userLoginFormData")
+@Document(collection ="userlgn")
 public class User {
 
-
-    @Id
-    int id;
+    String email;
     String name;
-
-    @Indexed
     String password;
+    String re_password;
+
+
     public User(){
 
     }
-    public User(String name, String password) {
+    public User(String name, String password,String email,String re_password) {
         this.name = name;
         this.password = password;
+        this.email = email;
+        this.re_password = re_password;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "name='" + name + '\'' +
+                "email='" + email + '\'' +
+                ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
+                ", re_password='" + re_password + '\'' +
                 '}';
     }
 }
