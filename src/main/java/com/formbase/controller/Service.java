@@ -15,14 +15,11 @@ public class Service {
 @Autowired
  private MongoTemplate mongoTemplate;
 
-    public User getLogin(User user){
+    public User getUser(User user){
 
     Query query = new Query();
     query.addCriteria(Criteria.where("name").is(user.getName()));
        User user1 = mongoTemplate.findOne(query,User.class);
-       if(user.name.equals(user1.getName())){
-          return user1;
-       }
-      return user;
+       return user1;
     }
 }

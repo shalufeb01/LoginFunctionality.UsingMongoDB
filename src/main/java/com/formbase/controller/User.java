@@ -3,16 +3,30 @@ package com.formbase.controller;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 
 @Setter
 @Getter
 @Document(collection ="userlgn")
 public class User {
 
+    @NotNull
+    @Email(regexp = "^(.+)@(.+)$",message = "Invalid Email Pattern")
     String email;
+
+
+    @NotEmpty(message = "Name field should not be empty")
     String name;
+
+    @Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$",message = "Invalid Password")
     String password;
+    @NotNull
+     @NotEmpty(message = "Re_Password should not be empty")
     String re_password;
 
 

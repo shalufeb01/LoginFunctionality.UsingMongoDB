@@ -1,10 +1,10 @@
 package com.formbase.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import javax.validation.Valid;
 
 @RestController
 public class ControllerWork {
@@ -19,29 +19,32 @@ private Service service;
 
 
    @RequestMapping(value = "/get_ragister",method = RequestMethod.POST)
-   public String ragister(@ModelAttribute User user){
-       System.out.println(user);
-        System.out.println(user.name);
+   public String ragister(@Valid User user, Errors error){
+       if(error.hasErrors()) {
+           return "/";
+       }
        this.repo.save(user);
-        return "success";
+        return "Successfully Registration";
     }
-/*
-    @RequestMapping(value = "/get_ragister",method = RequestMethod.POST)
-    public User login(@ModelAttribute User user){
+    @RequestMapping(value = "/login" , method = RequestMethod.GET)
+    public String loginPage(){
+        return "login";
 
-        System.out.println(user);
-        System.out.println(user.name);
-        service.save(user);
-        return user;
+    }
 
-    }*/
-
-    @RequestMapping(value = "/get_login",method = RequestMethod.POST)
-
+    @RequestMapping(value = "/loginForm",method = RequestMethod.POST)
     public String login(@ModelAttribute User user){
         System.out.println(user);
-        service.getLogin(user);
-        return "You are successfully Logged In";
+         User res_user = service.getUser(user);
+
+         if(res_user == null){
+
+             return "User not Found";
+         }
+         if((user.name.equals(res_user.getName())) && (user.password.equals(res_user.getPassword())))
+        return "Login Success";
+         else
+            return "Wrong password";
     }
 
 

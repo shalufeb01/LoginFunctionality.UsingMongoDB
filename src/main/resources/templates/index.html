@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="https://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -125,13 +125,21 @@ p {
 <div class="loginBox"> <img class="user" src="https://i.ibb.co/yVGxFPR/2.png" height="100px" width="100px">
   <h3>Sign Up Here</h3>
   <form action="#" th:action="@{/get_ragister}" th:object="${user}" method="post">
-    <div class="inputBox"> <input type="text" name="name" placeholder="Name" id="name" required> </div>
-    <div class="inputBox"> <input type="text" name="email" placeholder="Email" id="email"> </div>
-    <div class="inputBox"> <input type="password" name="Password" placeholder="Password" id="password" minlength="8" required> </div>
-    <div class="inputBox"> <input type="password" name="re_password" placeholder="Re_password" id="re_password" minlength="8" required> </div>
+    <div class="inputBox"> <input type="text" name="name" placeholder="Name" id="name" th:field = "*{name}">
+      <p th:if ="${#fields.hasErrors('name')}" th:errors = "*{name}"></p>
+    </div>
+    <div class="inputBox"> <input type="text" name="email" placeholder="Email" id="email" th:field = "*{email}">
+      <p th:if ="${#fields.hasErrors('email')}" th:errors = "*{email}"></p>
+    </div>
+    <div class="inputBox"> <input type="password" name="Password" placeholder="Password" id="password" th:field = "*{password}">
+      <p th:if ="${#fields.hasErrors('password')}" th:errors = "*{password}"></p>
+    </div>
+    <div class="inputBox"> <input type="password" name="re_password" placeholder="Re_password" id="re_password" th:field = "*{re_password}">
+      <p th:if ="${#fields.hasErrors('re_password')}" th:errors = "*{re_password}"></p>
+    </div>
     <input type="submit" name="Signup" value="Sign-up">
     <div id="register-link" class="text-right">
-      <a href="save.html">Sign In</a>
+      <a href="/login.html">Sign In</a>
     </div>
   </form>
 </div>
