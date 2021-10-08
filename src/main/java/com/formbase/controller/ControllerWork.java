@@ -1,7 +1,7 @@
 package com.formbase.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.Errors;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -19,16 +19,18 @@ private Service service;
 
 
    @RequestMapping(value = "/get_ragister",method = RequestMethod.POST)
-   public String ragister(@Valid User user, Errors error){
-       if(error.hasErrors()) {
-           return "/";
+   public String ragister(@Valid User user, BindingResult bindingResult){
+       if(bindingResult.hasErrors()){
+           System.out.println(bindingResult.getAllErrors());
+           return String.valueOf(bindingResult);
        }
+
        this.repo.save(user);
         return "Successfully Registration";
     }
     @RequestMapping(value = "/login" , method = RequestMethod.GET)
     public String loginPage(){
-        return "login";
+        return "/get_ragister";
 
     }
 
@@ -42,7 +44,7 @@ private Service service;
              return "User not Found";
          }
          if((user.name.equals(res_user.getName())) && (user.password.equals(res_user.getPassword())))
-        return "Login Success";
+        return "";
          else
             return "Wrong password";
     }

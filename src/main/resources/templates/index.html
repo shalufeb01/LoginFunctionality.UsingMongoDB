@@ -117,6 +117,10 @@ a:hover {
 p {
     color: #0000ff
 }
+.invalid-feedback{
+  font-size: 14px;
+  font-weight: 600;
+}
 </style>
 
 
@@ -124,18 +128,16 @@ p {
 <body>
 <div class="loginBox"> <img class="user" src="https://i.ibb.co/yVGxFPR/2.png" height="100px" width="100px">
   <h3>Sign Up Here</h3>
-  <form action="#" th:action="@{/get_ragister}" th:object="${user}" method="post">
-    <div class="inputBox"> <input type="text" name="name" placeholder="Name" id="name" th:field = "*{name}">
-      <p th:if ="${#fields.hasErrors('name')}" th:errors = "*{name}"></p>
+  <form th:action="@{/get_ragister}" th:object="${user}" method="post">
+    <div class="inputBox">
+       <input type="text"  class="form-control" name="name" placeholder="name" id="name" required>
     </div>
-    <div class="inputBox"> <input type="text" name="email" placeholder="Email" id="email" th:field = "*{email}">
-      <p th:if ="${#fields.hasErrors('email')}" th:errors = "*{email}"></p>
+    <div class="inputBox"> <input type="text" class="form-control" name="email" placeholder="email" id="email" required>
     </div>
-    <div class="inputBox"> <input type="password" name="Password" placeholder="Password" id="password" th:field = "*{password}">
-      <p th:if ="${#fields.hasErrors('password')}" th:errors = "*{password}"></p>
+    <div class="inputBox"> <input type="password" class="form-control" name="password" id="password" placeholder="password" required>
     </div>
-    <div class="inputBox"> <input type="password" name="re_password" placeholder="Re_password" id="re_password" th:field = "*{re_password}">
-      <p th:if ="${#fields.hasErrors('re_password')}" th:errors = "*{re_password}"></p>
+    <div class="inputBox"> <input type="password"  class="form-control" name="re_password" placeholder="Re_Password" required>
+
     </div>
     <input type="submit" name="Signup" value="Sign-up">
     <div id="register-link" class="text-right">
